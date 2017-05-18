@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+#map{
+  border: 1px solid red;
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+#district {
+  fill: #aaa;
+}
+.active {
+  fill: orange;
+}
+#district-borders {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+</style>
+<body>
+<div class="container">
+<div id="sidebar">Helloworld</div>
+<div id="map"></div>
+
+</div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script>
+
+var width = 960,
+    height = 960,
+    centered;
+
+//create MN centered albers equal area conic projection
+var projection = d3.geo.albers()
+          .center([0, 46]) //seem to move the x,y pixel location
+          .rotate([94,0, 0]) //centering it 94 degrees from center(0,46)
+          .parallels([43.5, 49]) //standard parallels
+          .scale(7000) //smaller = smaller
+          .translate([width/2, height/2]); // x/y location of display 
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var zoom = d3.behavior.zoom()
+    .translate(projection.translate())
+    .scale(projection.scale())
+    .scaleExtent([7000, 50000])
+    .on("zoom", zoomed);
+
+var drag = d3.behavior.drag()
+    .origin(function(d) { return {x: d[0], y: d[1]}; })
+    .on("drag", dragged);
+
+var svg = d3.select("#map").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var senateDistricts = svg.append("g")
+    .call(zoom);
+
+senateDistricts.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("data/getSenGeo.json", function(error, mn) {
+
+  if (error) throw error;
+  var districts = mn.features;
+  senateDistricts.append("g")
+    .on("touchstart", nozoom)
+    .on("touchend", nozoom)
+      .attr("id", "district")
+      .selectAll("path")
+      .data(districts)
+      .enter().append("path")
+      .attr("d", path)
+      .attr("stroke","black")
+      //.on("drag", console.log('dragged'))
+      .on("click", clicked);
+
+  senateDistricts.append("path")
+      .datum(mn.features, function(a, b) { return a !== b; })
+      .attr("id", "district-borders")
+      .attr("d", path);
+});
+
+function clicked(d) {
+  console.log(d.properties)
+  var x, y, k;
+
+  if (d && centered !== d) {
+    var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+
+  senateDistricts.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+  // senateDistricts.transition()
+  //     .duration(750)
+  //     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+  //     .style("stroke-width", 1.5 / k + "px");
+}
+
+function zoomed() {
+  projection.translate(d3.event.translate).scale(d3.event.scale);
+  senateDistricts.selectAll("path").attr("d", path);
+}
+
+function dragged(d) {
+  // d[0] = d3.event.x, d[1] = d3.event.y;
+  // if (this.nextSibling) this.parentNode.appendChild(this);
+  // d3.select(this).attr("transform", "translate(" + d + ")");
+}
+
+function nozoom() {
+  d3.event.preventDefault();
+}
+</script>
