@@ -4,8 +4,27 @@
 	/*padding:0 !important;*/
 }
 
+.bg-inverse{
+	background-color: #343a41 !important;
+}
+.btn{
+	border-radius: 0;
+}
+.btn-primary{
+	background-color: #343a41;
+	border-color:transparent;
+	margin:5px;
+}
+
+.btn-group{
+	margin: 5px;
+}
 .btn-primary.active, .btn-primary:active, .show > .btn-primary.dropdown-toggle {
-	background-color: #75d802
+	background-color: #24afb2;
+	border-color:transparent;
+}
+.btn-outline-success{
+	border-color:#24afb2;
 }
 
 
@@ -22,7 +41,7 @@
 	padding-left: 0;
   	padding-right: 0;
     position: fixed;
-    background-color: #555;
+    background-color: #55606e;
     top: 51px;
     bottom: 0;
     left: 0;
@@ -114,7 +133,7 @@ footer {
   .sidebar-offcanvas {
     position: absolute;
     top:-17px;
-    width: 50%; 
+    /*width: 50%; */
     
   }
 }
