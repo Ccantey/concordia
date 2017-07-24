@@ -13,9 +13,9 @@
 	<!--mapbox-->
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
-	<!--code-->
-	<script src="js/helper.js"></script>
+	<!--code-->	
 	<script src="js/app.js"></script>
+  <script src="js/helper.js"></script>
 	<link href='css/app.css' rel='stylesheet' />
 
 
@@ -35,21 +35,21 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">NAVBAR</a>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">LINK</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link disabled" href="#">DISABLED</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DROPDOWN</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">Action</a>
               <a class="dropdown-item" href="#">Another action</a>
@@ -59,7 +59,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Enter location">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">SEARCH</button>
         </form>
       </div>
     </nav>
@@ -70,25 +70,62 @@
 
 
           <div class="sidebar-offcanvas" id="sidebar">
-          <div class="btn-group" data-toggle="buttons">
+<!--           	<div class="btn-group" data-toggle="buttons">
 			  <label class="btn btn-primary active">
-			    <input type="checkbox" checked autocomplete="off"> Layer 1
+			    <input type="checkbox" checked autocomplete="off"> LAYER 1
 			  </label>
 			  <label class="btn btn-primary">
-			    <input type="checkbox" autocomplete="off"> Layer 2
+			    <input type="checkbox" autocomplete="off"> LAYER 2
 			  </label>
 			  <label class="btn btn-primary">
-			    <input type="checkbox" autocomplete="off"> Layer 3
+			    <input type="checkbox" autocomplete="off"> LAYER 3
 			  </label>
 			</div>
+
+				<ul>
+		          <li class="nav-item dropdown">
+		            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DROPDOWN</a>
+		            <div class="dropdown-menu" aria-labelledby="dropdown01">
+		              <a class="dropdown-item" href="#">Action</a>
+		              <a class="dropdown-item" href="#">Another action</a>
+		              <a class="dropdown-item" href="#">Something else here</a>
+		            </div>
+		          </li>
+		        </ul> -->
+		        <form class="form-group">
+		        <div class="form-group row">
+				  <!-- <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label> -->
+				  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+				    <option selected>Choose Layer</option>
+				    <option value="party">Party</option>
+				    <option value="TotalIncom">Total Income</option>
+				    <option value="LatinoEmpl">Latino</option>
+				  </select>
+                </div>
+                <div class="form-group row">
+				  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+				    <input type="checkbox" class="custom-control-input">
+				    <span class="custom-control-indicator"></span>
+				    <span class="custom-control-description">Global Layer</span>
+				  </label>
+
+				  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+				  </div>
+				</form>
+        <div class="sidebar-results">
+             <div id="header"></div>
+             <table id='results' class="table-condensed"></table>
+             <span id="clear" >Clear <i class="fa fa-times" aria-hidden="true"></i></span>
           </div>
+
+        </div>
           
 
         </div><!--/span-->
         <div class="col-12 col-md-9">
         <div id='map'></div>
           <!-- <p class="float-left hidden-md-up"> -->
-            <button id="toggleBtn" type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+            <button id="toggleBtn" type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">TOGGLE NAV</button>
           <!-- </p> -->
 
           </div>

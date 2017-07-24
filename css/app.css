@@ -37,16 +37,14 @@
 }
 
 .sidebar-offcanvas{
-
-	padding-left: 0;
-  	padding-right: 0;
+    min-width: 25%;
+	  padding: 30px 40px 10px 40px;
     position: fixed;
     background-color: #55606e;
     top: 51px;
     bottom: 0;
     left: 0;
     z-index: 1;
-    padding: 20px;
     overflow-x: hidden;
     overflow-y: auto;
     border-right: 1px solid #eee;
@@ -60,6 +58,12 @@
 
 .mapboxgl-ctrl-top-right{
 	top:50px;
+}
+
+.layers-dropdown{
+	padding:5px;
+	width:50%;
+	background-color:#55606e;
 }
 
 /*
