@@ -93,24 +93,40 @@
 		          </li>
 		        </ul> -->
 		        <form class="form-group">
-		        <div class="form-group row">
-				  <!-- <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label> -->
-				  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-				    <option selected value="party">Party</option>>Choose Layer</option>
-				    <option value="party">Party</option>
-				    <option value="TotalIncom">Total Income</option>
-				    <option value="LatinoEmpl">Latino</option>
-				  </select>
-                </div>
-                <div class="form-group row">
-				  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-				    <input type="checkbox" class="custom-control-input">
-				    <span class="custom-control-indicator"></span>
-				    <span class="custom-control-description">Global Layer</span>
-				  </label>
+              Select Layer:
+  		        <div class="form-group row" id="layerBox">
+        				  <!-- <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label> -->
+        				  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="layerSelect">
+        				    <option selected value="party">Party</option>
+        				    <option value="disability">Disability</option>
+        				    <option value="economic">Economic</option>
+        				    <option value="employment">Employment</option>
+        				  </select>
+              </div>
+              Select Attribute:
+              <div class="form-group row" id="attributeBox">
+                  <!-- <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label> -->
+                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0 attSelect" id="economic">    
+                    <option selected value="TotalIncom">Total Income</option>
+                    <option value="FemHHPov">Female HH Poverty</option>
+                    <option value="MNTaxes">Taxes</option>
+                    <option value="LatinoEmpl">poverty</option>
+                  </select>
 
-				  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-				  </div>
+                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0 attSelect" id="disability">
+                    <option selected value="AsianDisab">Asian</option>
+                    <option value="BlackDisab">Black</option>
+                    <option value="LatinoDisa">Latino</option>
+                    <option value="WhiteDisab">White</option>
+                  </select>
+
+                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0 attSelect" id="employment">
+                    <option selected value="BlackEmplo">Black</option>
+                    <option value="LatinoEmpl">Latino</option>
+                    <option value="WhiteEmplo">White</option>
+                  </select>
+  				  </div>
+            <button type="submit" class="btn btn-primary" id="formsubmission">Submit</button>
 				</form>
         <div class="sidebar-results">
              <div id="header"></div>

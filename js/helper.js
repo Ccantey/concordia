@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+	$('#economic, #disability, #employment').hide();
     init();
     map.on('mousemove', function (e) {
 	    var features = map.queryRenderedFeatures(e.point, { layers: layersArray });
@@ -19,33 +20,28 @@ $( document ).ready(function() {
 	    mapResults(feature);
 	    showResults(feature.properties);       
  	});
-
- 	$('#inlineFormCustomSelect').change(function(e){
- 		console.log($(this).val());
+    $('#formsubmission').click(function(e){
+    	e.preventDefault();
+    	if ($('#layerSelect').val() == 'party'){
+    		activeSelect.paintProperty = 'party';
+    	} else {
+    		console.log($('.attSelect:visible').val())
+    		activeSelect.paintProperty = $('.attSelect:visible').val();
+    	}
+    	
+    	changeData(activeSelect);
+    })
+ 	$('#layerSelect').change(function(e){
+ 		// console.log($(this).val());
 
 	 		e.preventDefault();
+	 		$('#economic, #disability, #employment').hide();
+	 		$('#economic, #disability, #employment').removeClass('active');
+	 		var att = '#'+$(this).val();
+	 		$(att).addClass('active');
+	 		$('.active').show()
 	    //remove previous layers
 	    $('#clear').hide();
-	    // document.getElementById('precinct-header').innerHTML = "";
-	    // document.getElementById('precinct-results').innerHTML = "";
-	    // map.removeLayer("2016results-"+ activeTab.geography);
-	    // map.removeLayer("2016results-"+ activeTab.geography+"-hover");
-	    // spliceArray("2016results-"+ activeTab.geography);
-	    // spliceArray("2016results-"+ activeTab.geography+"-hover");
-	    // map.setLayoutProperty(activeTab.geography + '-symbols', 'visibility', 'none');
-	    // map.setLayoutProperty(activeTab.geography + '-lines', 'visibility', 'none');
-	    // //remove any vtd selection
-	    // map.setFilter("2016results-vtd", ['all', ['==', 'UNIT', 'vtd'], ["!=", "VTD",'any']]);
-	    // map.setFilter("2016results-vtd-hover", ['all', ['==', 'UNIT', 'vtd'], ["==", "VTD",'all']]);
-
-	    $('.election-navigation-a').removeClass('active');
-	      
-	    //add new selections
-	    $(this).addClass('active');
-	    activeSelect.paintProperty = $(this).val();
-	    // activeTab.geography = $(this).val('geography');
-	    // activeTab.name = $(this).val('name');
-	    changeData(activeSelect);
  	})
 
 

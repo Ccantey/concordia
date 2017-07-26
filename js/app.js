@@ -56,8 +56,7 @@ function init(){
 		        } /*layers[2] = paint object*/                             
 	        ], 
    	        ["MNSen_ALana-highlighted", 'fill',["in", "MNSENDIST", ""],{"fill-color": {"type":activeSelect.paintType,"property": activeSelect.paintProperty,"stops": [['DFL', 'orange'],['R', 'orange']]},"fill-outline-color": "#fff","fill-opacity":1}],
-   	        ["MNSen_ALana-stroke", 'line',['has','district'],{"line-color": '#fff',"line-width": {"stops":[[3,0.5],[10,2]]}}]
-		        
+   	        ["MNSen_ALana-stroke", 'line',['has','district'],{"line-color": '#fff',"line-width": {"stops":[[3,0.5],[10,1]]}}]		        
 	    ];      
 
         layers.forEach(addLayer);
@@ -108,7 +107,7 @@ function mapResults(feature){
 }
 
 function changeData(activeSelect){
-	// console.log(activeSelect.paintProperty);
+	// alert(activeSelect.paintProperty);
     // var visibility = map.getLayoutProperty(activeSelect+'-lines', 'visibility');
 	switch (activeSelect.paintProperty) {
 	    case "party": 
@@ -119,6 +118,7 @@ function changeData(activeSelect){
 	        // map.setLayoutProperty('cty-symbols', 'visibility', 'visible');
 	        // popLegendEl.style.display = 'block';
          //    pctLegendEl.style.display = 'none';
+            map.setPaintProperty("MNSen_ALana-stroke", 'line-color', '#FFF');
 	        break;
 	    //multiple case like this -> diabled will have same symbology
 	    case "AsianDisab":
@@ -136,7 +136,7 @@ function changeData(activeSelect){
 	        // map.setLayoutProperty('cng-lines', 'visibility', 'visible');
 	        // map.setLayoutProperty('cng-symbols', 'visibility', 'visible');
 	        // popLegendEl.style.display = 'none';
-         //    pctLegendEl.style.display = 'block';
+            // pctLegendEl.style.display = 'block';
 	        break;
 	    case "AsianEmplo":
 	    case "BlackEmplo":
@@ -149,23 +149,23 @@ function changeData(activeSelect){
 	        // map.setLayoutProperty('sen-lines', 'visibility', 'visible');
 	        // map.setLayoutProperty('sen-symbols', 'visibility', 'visible');
 	        // popLegendEl.style.display = 'none';
-         //    pctLegendEl.style.display = 'block';
+            // pctLegendEl.style.display = 'block';
 	        break;
 	    case "TotalIncom":
 	        // $('#candidate-table').hide(); 
 	        var type = 'exponential'
-	        var stops = [[100000000, '#edf8fb'],[200000000, '#bfd3e6'],[300000000, '#9ebcda'],
-	                     [750000000, '#8856a7'], [5000000000, '#810f7c']
+	        var stops = [[100000000, '#ffffcc'],[200000000, '#a1dab4'],[300000000, '#41b6c4'],
+	                     [750000000, '#2c7fb8'], [5000000000, '#253494']
                 ];
 	        var field = activeSelect.paintProperty;
-
+            map.setPaintProperty("MNSen_ALana-stroke", 'line-color', '#000');
 	        // map.setLayoutProperty('hse-lines', 'visibility', 'visible');
 	        // map.setLayoutProperty('hse-symbols', 'visibility', 'visible');
 	        // popLegendEl.style.display = 'none';
-         //    pctLegendEl.style.display = 'block';
+            // pctLegendEl.style.display = 'block';
 	        break;
 	};
-
+    
     map.setPaintProperty("MNSen_ALana", 'fill-color', {"type":type, 'property': field, 'stops':stops});  // selection = map.querySourceFeatures('2012results-cty-hover', {sourceLayer:'AllResults', filter: ['has','COUNTYNAME']})
     // map.setPaintProperty("2016results-vtd", 'fill-opacity', {"type":'interval', 'property': activeSelect.selection+'PCT', 'stops': [[0, 0.25],[50, 0.45],[55, 0.6],[60, 0.7],[100, .99]]});
 	// showResults(activeSelect, feature.properties);
