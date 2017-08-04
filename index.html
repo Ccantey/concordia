@@ -35,14 +35,14 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">NAVBAR</a>
+      <a class="navbar-brand" href="#">Concordia Map</a>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+         <!--  <li class="nav-item active">
             <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+        <!--   <li class="nav-item">
             <a class="nav-link" href="#">LINK</a>
           </li>
           <li class="nav-item">
@@ -55,7 +55,7 @@
               <a class="dropdown-item" href="#">Another action</a>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
-          </li>
+          </li> -->
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Enter location">
@@ -110,7 +110,7 @@
                     <option selected value="TotalIncom">Total Income</option>
                     <option value="FemHHPov">Female HH Poverty</option>
                     <option value="MNTaxes">Taxes</option>
-                    <option value="LatinoEmpl">poverty</option>
+                    <!-- <option value="LatinoEmpl">poverty</option> -->
                   </select>
 
                   <select class="custom-select mb-2 mr-sm-2 mb-sm-0 attSelect" id="disability">
@@ -126,7 +126,8 @@
                     <option value="WhiteEmplo">White</option>
                   </select>
   				  </div>
-            <button type="submit" class="btn btn-primary" id="formsubmission">Submit</button>
+            <!-- <button type="submit" class="btn btn-outline-success" id="formsubmissionBtn">Submit</button> -->
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="formsubmissionBtn">Submit</button>
 				</form>
         <div class="sidebar-results">
              <div id="header"></div>
@@ -139,6 +140,7 @@
 
         </div><!--/span-->
         <div class="col-12 col-md-9">
+
         <div id='map'></div>
           <!-- <p class="float-left hidden-md-up"> -->
             <button id="toggleBtn" type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">TOGGLE NAV</button>
@@ -152,7 +154,43 @@
 
       <hr>
 
-    
+    <div id=legend>
+          <div class='legend'>
+              <!-- <h6>Population</h6> -->
+              <!-- <div class="legend-party">DFL</div> -->
+              <div><span style='background-color: #edf8fb;'></span></div>
+              <div><span style='background-color: #bfd3e6;'></span></div>
+              <div><span style='background-color: #9ebcda;'></span></div>
+              <div><span style='background-color: #8c96c6;'></span></div>
+              <div><span style='background-color: #8856a7;'></span></div>
+              <div><span style='background-color: #810f7c;'></span></div>
+              <!-- <div><span style='background-color: #6582ac;opacity:0.90'></span></div> -->
+          </div>
+<!--           <div class='legend'> 
+               <div class="legend-party">R</div>             
+              <div><span style='background-color: #cc7575;opacity:0.25'></span></div>
+              <div><span style='background-color: #cc7575;opacity:0.45'></span></div>
+              <div><span style='background-color: #cc7575;opacity:0.60'></span></div>
+              <div><span style='background-color: #cc7575;opacity:0.70'></span></div>
+              <div><span style='background-color: #cc7575;opacity:0.90'></span></div>
+          </div> -->
+          <div id="pop-legend" class='legend'>    
+              <!-- <div class="legend-party">Stuff</div>           -->
+              <div class="legend-text"> X</div>
+              <div class="legend-text"> XX</div>
+              <div class="legend-text">XXX</div>
+              <div class="legend-text">XXXX</div>
+              <div class="legend-text">XXXXX</div>
+          </div>
+          <div id="pct-legend" class='legend' style='display: none;''>    
+              <div class="legend-party">Percent Win</div>          
+              <div class="legend-text"> Less than 50%</div>
+              <div class="legend-text"> 50%</div>
+              <div class="legend-text"> 55%</div>
+              <div class="legend-text"> 60%</div>
+              <div class="legend-text"> Greater than 60%</div>
+          </div>
+        </div>
 
     </div><!--/.container-->
 

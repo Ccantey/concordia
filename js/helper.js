@@ -1,6 +1,14 @@
 $( document ).ready(function() {
+	$('#layerSelect').prop('selectedIndex',0);
 	$('#economic, #disability, #employment').hide();
     init();
+
+   //  $('.mapboxgl-ctrl-top-right, #legend').affix({
+	  //   offset: {
+	  //   top: 210
+	  //   }
+	  // });
+    
     map.on('mousemove', function (e) {
 	    var features = map.queryRenderedFeatures(e.point, { layers: layersArray });
 	    map.getCanvas().style.cursor = (features.length) ? 'pointer' : ''; 
@@ -20,7 +28,7 @@ $( document ).ready(function() {
 	    mapResults(feature);
 	    showResults(feature.properties);       
  	});
-    $('#formsubmission').click(function(e){
+    $('#formsubmissionBtn').click(function(e){
     	e.preventDefault();
     	if ($('#layerSelect').val() == 'party'){
     		activeSelect.paintProperty = 'party';

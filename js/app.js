@@ -7,6 +7,8 @@ var activeSelect = {
   paintStops:[['DFL', '#6582ac'],['R', '#cc7575']]
 };
 
+var popLegendEl = document.getElementById('pop-legend');
+var pctLegendEl = document.getElementById('pct-legend');
 
 function init(){
 	southWest = new mapboxgl.LngLat( -104.7140625, 41.86956);
@@ -85,15 +87,21 @@ function showResults(featureProperties){
 	var content = '';
 	var header ='';
 	var district = '';
-	// var unit =''
-	// var data = {
-	// 	activeSelect:activeSelect.selection,
-	// 	geography:activeSelect.geography
-	// };
+	
+	var attributeMap = {'AsianDisab':"Asian Disabled", "BlackDisab":"Black Disabled","LatinoDisa":"Latino Disabled", 'Native_A_1':"Native American Disabled","WhiteDisab":"White Disabled",
+						'FemHHPov':"Female Head Household Poverty",
+                        'AsianEmplo':"Asian Employed",'BlackEmplo':"Black Empolyed","LatinoEmpl":"Latino Employed","Native_Ame":"Native American Employed",'WhiteEmplo':"White Emplyed",
+                    	'MNTaxes':"MN Taxes",'TotalIncom':"Total Income"}
 	header += "<h5>Results</h5>";
+	content += "<tr><th>Senate District:</th><td>"+featureProperties['MNSENDIST']+"</td></tr>"
+	content += "<tr><th>Senator:</th><td>"+featureProperties['name']+"</td></tr>"
 	for (attributes in featureProperties){
-		// console.log(attributes, featureProperties[attributes])
-		content += "<tr><th>"+attributes+":</th><td>"+featureProperties[attributes]+"</td></tr>"
+		if( attributes.match(/MNSENDIST/gi) || attributes.match(/OBJECTID/gi) || attributes.match(/Shape_Area/gi) || attributes.match(/Shape_Leng/gi) || attributes.match(/district/gi) || attributes.match(/SENDIST/gi) || attributes.match(/memid/gi) || attributes.match(/name/gi) || attributes.match(/party/gi)){
+			content += "";
+		}else{
+			console.log(attributes, featureProperties[attributes])
+			content += "<tr><th>"+attributeMap[attributes]+":</th><td>"+featureProperties[attributes]+"</td></tr>"
+		}		
 	}
 	$("#results").html(content);
 	// district += feature.properties.SENDIST
@@ -126,17 +134,23 @@ function changeData(activeSelect){
 	    case "LatinoDisa":
 	    case "Native_A_1":
 	    case "WhiteDisab":
-
 	        // $('#candidate-table').hide();
 	        var type = 'interval'
-	        var stops = [[75000000, '#edf8fb'],[100000000, '#bfd3e6'],[200000000, '#9ebcda'],
-	                       [500000000, '#8c96c6'],[750000000, '#8856a7'], [5000000000, '#810f7c']
+	        var stops = [[0, '#edf8fb'],[3, '#bfd3e6'],[7, '#9ebcda'],
+	                       [10, '#8c96c6'],[13, '#8856a7'], [17, '#810f7c']
                 ];
 	        var field = activeSelect.paintProperty;
-	        // map.setLayoutProperty('cng-lines', 'visibility', 'visible');
-	        // map.setLayoutProperty('cng-symbols', 'visibility', 'visible');
-	        // popLegendEl.style.display = 'none';
-            // pctLegendEl.style.display = 'block';
+
+            
+			$('#pop-legend').each(function(index){
+			    	console.log( index + ": " + $( this ).text() );
+
+			    for(var i = 0; i < stops.length; i++) {
+			    var colors = stops[i];
+			    console.log(colors[0],colors[1]);
+			    $( this ).html(colors[0])
+			}
+			 })
 	        break;
 	    case "AsianEmplo":
 	    case "BlackEmplo":
@@ -144,8 +158,11 @@ function changeData(activeSelect){
 	    case "Native_Ame":
 	    case "WhiteEmplo":
 	        // $('#candidate-table').hide();
-	        var opacity = [[0, 0.25],[50, 0.45],[55, 0.6],[60, 0.7],[100, .99]];
-	        var opacityField = activeSelect.selection+'PCT';
+	        var type = 'interval'
+	        var stops = [[0, '#edf8fb'],[5, '#bfd3e6'],[10, '#9ebcda'],
+	                       [15, '#8c96c6'],[20, '#8856a7'], [50, '#810f7c']
+                ];
+	        var field = activeSelect.paintProperty;
 	        // map.setLayoutProperty('sen-lines', 'visibility', 'visible');
 	        // map.setLayoutProperty('sen-symbols', 'visibility', 'visible');
 	        // popLegendEl.style.display = 'none';
@@ -154,10 +171,37 @@ function changeData(activeSelect){
 	    case "TotalIncom":
 	        // $('#candidate-table').hide(); 
 	        var type = 'exponential'
-	        var stops = [[100000000, '#ffffcc'],[200000000, '#a1dab4'],[300000000, '#41b6c4'],
-	                     [750000000, '#2c7fb8'], [5000000000, '#253494']
+	        var stops = [[60000000, '#ffffcc'],[104000000, '#a1dab4'],[207000000, '#41b6c4'],
+	                     [353000000, '#2c7fb8'], [1000000000, '#253494']
                 ];
 	        var field = activeSelect.paintProperty;
+            map.setPaintProperty("MNSen_ALana-stroke", 'line-color', '#000');
+	        // map.setLayoutProperty('hse-lines', 'visibility', 'visible');
+	        // map.setLayoutProperty('hse-symbols', 'visibility', 'visible');
+	        // popLegendEl.style.display = 'none';
+            // pctLegendEl.style.display = 'block';
+	        break;
+	    case "MNTaxes":
+	        // $('#candidate-table').hide(); 
+	        var type = 'exponential'
+	        var stops = [[6889385, '#ffffcc'],[10100944, '#a1dab4'],[20666002, '#41b6c4'],
+	                     [30701440, '#2c7fb8'], [150000000, '#253494']
+                ];
+	        var field = activeSelect.paintProperty;
+            map.setPaintProperty("MNSen_ALana-stroke", 'line-color', '#000');
+	        // map.setLayoutProperty('hse-lines', 'visibility', 'visible');
+	        // map.setLayoutProperty('hse-symbols', 'visibility', 'visible');
+	        // popLegendEl.style.display = 'none';
+            // pctLegendEl.style.display = 'block';
+	        break;
+	    case "FemHHPov":
+	        // $('#candidate-table').hide(); 
+	        var type = 'exponential'
+	        var stops = [[0, '#ffffcc'],[5, '#a1dab4'],[10, '#41b6c4'],
+	                     [15, '#2c7fb8'], [20, '#253494']
+                ];
+	        var field = activeSelect.paintProperty;
+	        console.log(field)
             map.setPaintProperty("MNSen_ALana-stroke", 'line-color', '#000');
 	        // map.setLayoutProperty('hse-lines', 'visibility', 'visible');
 	        // map.setLayoutProperty('hse-symbols', 'visibility', 'visible');
